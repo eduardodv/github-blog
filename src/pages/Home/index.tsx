@@ -1,3 +1,5 @@
+import { HeaderContent } from '../../components/HeaderContent'
+
 export function Home() {
-  return <h1>Github Blog</h1>
+  return <HeaderContent />
 }
