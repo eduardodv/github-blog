@@ -17,6 +17,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    position: relative;
+    padding-bottom: 5rem;
     min-height: inherit;
     position: relative;
     color: ${(props) => props.theme.colors['base-text']};
