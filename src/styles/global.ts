@@ -12,7 +12,13 @@ export const GlobalStyle = createGlobalStyle`
     box-shadow: 0 0 0 2px ${(props) => props.theme.colors['blue-500']};
   }
 
+  html {
+    min-height: 100svh;
+  }
+
   body {
+    min-height: inherit;
+    position: relative;
     color: ${(props) => props.theme.colors['base-text']};
     background: ${(props) => props.theme.colors['base-background']};
     -webkit-font-smoothing: antialiased;
