@@ -16,28 +16,28 @@ export function InfoAbout() {
 
   return (
     <InfoAboutContainer>
-      <Item>
+      <Item isHome={isHome}>
         <FontAwesomeIcon icon={faGithub} />
         eduardodv
       </Item>
       {isHome && (
         <>
-          <Item>
+          <Item isHome={isHome}>
             <FontAwesomeIcon icon={faBuilding} />
             Rocketseat
           </Item>
-          <Item>
+          <Item isHome={isHome}>
             <FontAwesomeIcon icon={faUserGroup} />3 seguidores
           </Item>
         </>
       )}
       {!isHome && (
         <>
-          <Item>
+          <Item isHome={isHome}>
             <FontAwesomeIcon icon={faCalendarDay} />
             Há 1 dia
           </Item>
-          <Item>
+          <Item isHome={isHome}>
             <FontAwesomeIcon icon={faComment} />5 comentários
           </Item>
         </>

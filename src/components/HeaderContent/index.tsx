@@ -5,17 +5,11 @@ import {
   Description,
   Title,
   Links,
-  LinkItem,
 } from './styles'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faUpRightFromSquare,
-  faAngleLeft,
-} from '@fortawesome/free-solid-svg-icons'
 
 import { useLocation } from 'react-router-dom'
 import { InfoAbout } from '../InfoAbout'
+import { LinkItem } from '../LinkItem'
 
 export function HeaderContent() {
   const location = useLocation()
@@ -30,15 +24,12 @@ export function HeaderContent() {
       )}
       <Content>
         <Links isHome={isHome}>
-          {!isHome && (
-            <LinkItem to="/">
-              <FontAwesomeIcon icon={faAngleLeft} /> Voltar
-            </LinkItem>
-          )}
-          <LinkItem to="https://github.com/eduardodv" target="_blank">
-            {!isHome && 'Ver no'} Github
-            <FontAwesomeIcon icon={faUpRightFromSquare} />
-          </LinkItem>
+          {!isHome && <LinkItem link="/" text="Voltar" iconType="back" />}
+          <LinkItem
+            link="https://github.com/eduardodv"
+            text={isHome ? 'Github' : 'Ver no Github'}
+            iconType="external"
+          />
         </Links>
         <Title isHome={isHome}>Eduardo Dalla Vecchia</Title>
         {isHome && (
