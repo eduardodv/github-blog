@@ -8,7 +8,7 @@ import {
 
 export function Card() {
   return (
-    <CardContainer to="/">
+    <CardContainer to="/1">
       <HeadCard>
         <Title>JavaScript data types and data structures</Title>
         <CreatedAt>Há 1 dia</CreatedAt>
