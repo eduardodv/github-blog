@@ -6,11 +6,14 @@ export const InfoAboutContainer = styled.div`
   flex-wrap: wrap;
 `
 
-export const Item = styled.span`
+export const Item = styled.span<{ isHome: boolean }>`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: ${(props) => props.theme.colors['base-subtitle']};
+  color: ${(props) =>
+    props.isHome
+      ? props.theme.colors['base-subtitle']
+      : props.theme.colors['base-span']};
 
   svg {
     max-width: 1.125rem;
