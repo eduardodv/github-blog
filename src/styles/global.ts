@@ -25,6 +25,19 @@ export const GlobalStyle = createGlobalStyle`
     background: ${(props) => props.theme.colors['base-background']};
     -webkit-font-smoothing: antialiased;
     line-height: 1.6;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: ${(props) => props.theme.colors['blue-600']};
+    }
   }
 
   body, input, textarea, button {
