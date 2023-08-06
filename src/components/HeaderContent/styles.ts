@@ -45,29 +45,29 @@ export const Content = styled.div`
   flex: 1;
 `
 
-export const Links = styled.div<{ isHome: boolean }>`
+export const Links = styled.div<{ $isHome: boolean }>`
   display: flex;
   margin-bottom: 20px;
-  justify-content: ${(props) => (props.isHome ? 'center' : 'space-between')};
+  justify-content: ${(props) => (props.$isHome ? 'center' : 'space-between')};
 
   @media only screen and (min-width: 576px) {
     justify-content: ${(props) =>
-      props.isHome ? 'flex-end' : 'space-between'};
-    position: ${(props) => props.isHome && 'absolute'};
-    right: ${(props) => props.isHome && '2rem'};
-    margin-top: ${(props) => props.isHome && '0.3125rem'};
+      props.$isHome ? 'flex-end' : 'space-between'};
+    position: ${(props) => props.$isHome && 'absolute'};
+    right: ${(props) => props.$isHome && '2rem'};
+    margin-top: ${(props) => props.$isHome && '0.3125rem'};
   }
 `
 
-export const Title = styled.h2<{ isHome: boolean }>`
+export const Title = styled.h2<{ $isHome: boolean }>`
   margin-bottom: 0.5rem;
   line-height: 1.6;
   font-size: ${(props) => props.theme.sizes['title-lg']};
   color: ${(props) => props.theme.colors['base-title']};
-  padding-right: ${(props) => props.isHome && '5rem'};
+  padding-right: ${(props) => props.$isHome && '5rem'};
 
   @media only screen and (max-width: 575px) {
-    text-align: ${(props) => props.isHome && 'center'};
+    text-align: ${(props) => props.$isHome && 'center'};
     padding-right: 0;
   }
 `
