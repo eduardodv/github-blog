@@ -10,3 +10,10 @@ export const ListCards = styled.section`
     grid-template-columns: 1fr;
   }
 `
+
+export const ErrorMessage = styled.section`
+  padding: 1rem 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: ${(props) => props.theme.sizes['title-lg']};
+`
