@@ -22,6 +22,8 @@ const initialUserData: UserDataProps = {
   login: '',
   name: '',
   bio: '',
+  company: '',
+  followers: 0,
 }
 
 export function HeaderContent() {

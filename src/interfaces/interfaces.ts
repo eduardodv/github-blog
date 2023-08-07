@@ -3,4 +3,6 @@ export interface UserDataProps {
   avatar_url: string
   name: string
   bio: string
+  company: string
+  followers: number
 }
