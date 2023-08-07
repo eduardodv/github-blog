@@ -17,8 +17,15 @@ import { api } from '../../lib/axios'
 
 import { UserDataProps } from '../../interfaces/interfaces'
 
+const initialUserData: UserDataProps = {
+  avatar_url: '',
+  login: '',
+  name: '',
+  bio: '',
+}
+
 export function HeaderContent() {
-  const [userData, setUserData] = useState<UserDataProps>({})
+  const [userData, setUserData] = useState<UserDataProps>(initialUserData)
 
   async function fetchUserData() {
     const response = await api.get('/users/eduardodv', {})
@@ -29,8 +36,6 @@ export function HeaderContent() {
   useEffect(() => {
     fetchUserData()
   }, [])
-
-  // console.log(userData)
 
   const location = useLocation()
   const isHome = location.pathname === '/'
