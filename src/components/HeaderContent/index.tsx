@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+
 import {
   HeaderContentContainer,
   AuthorImage,
@@ -7,11 +10,35 @@ import {
   Links,
 } from './styles'
 
-import { useLocation } from 'react-router-dom'
 import { InfoAbout } from '../InfoAbout'
 import { LinkItem } from '../LinkItem'
 
+import { api } from '../../lib/axios'
+
+import { UserDataProps } from '../../interfaces/interfaces'
+
+const initialUserData: UserDataProps = {
+  avatar_url: '',
+  login: '',
+  name: '',
+  bio: '',
+  company: '',
+  followers: 0,
+}
+
 export function HeaderContent() {
+  const [userData, setUserData] = useState<UserDataProps>(initialUserData)
+
+  async function fetchUserData() {
+    const response = await api.get('/users/eduardodv', {})
+
+    setUserData(response.data)
+  }
+
+  useEffect(() => {
+    fetchUserData()
+  }, [])
+
   const location = useLocation()
   const isHome = location.pathname === '/'
 
@@ -19,27 +46,26 @@ export function HeaderContent() {
     <HeaderContentContainer>
       {isHome && (
         <AuthorImage>
-          <img src="https://github.com/eduardodv.png" alt="" />
+          <img src={userData.avatar_url} alt="" />
         </AuthorImage>
       )}
       <Content>
-        <Links isHome={isHome}>
+        <Links $isHome={isHome}>
           {!isHome && <LinkItem link="/" text="Voltar" iconType="back" />}
           <LinkItem
-            link="https://github.com/eduardodv"
+            link={
+              isHome
+                ? `https://github.com/${userData.login}`
+                : `https://github.com/`
+            }
             text={isHome ? 'Github' : 'Ver no Github'}
             iconType="external"
+            newTab
           />
         </Links>
-        <Title isHome={isHome}>Eduardo Dalla Vecchia</Title>
-        {isHome && (
-          <Description>
-            Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-            viverra massa quam dignissim aenean malesuada suscipit. Nunc,
-            volutpat pulvinar vel mass.
-          </Description>
-        )}
-        <InfoAbout />
+        <Title $isHome={isHome}>{isHome ? userData.name : 'Título post'}</Title>
+        {isHome && <Description>{userData.bio}</Description>}
+        <InfoAbout userData={userData} />
       </Content>
     </HeaderContentContainer>
   )

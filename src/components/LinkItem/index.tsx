@@ -10,12 +10,13 @@ import {
 interface LinkItemProps {
   text: string
   link?: string
+  newTab?: boolean
   iconType?: 'external' | 'back' | 'undo' | undefined
 }
 
-export function LinkItem({ text, link, iconType }: LinkItemProps) {
+export function LinkItem({ text, link, newTab, iconType }: LinkItemProps) {
   return (
-    <LinkItemContainer to={link || ''}>
+    <LinkItemContainer to={link || ''} target={newTab ? '_blank' : ''}>
       {iconType === 'back' && <FontAwesomeIcon icon={faAngleLeft} />}
       {text}
       {iconType === 'external' && (

@@ -6,12 +6,12 @@ export const InfoAboutContainer = styled.div`
   flex-wrap: wrap;
 `
 
-export const Item = styled.span<{ isHome: boolean }>`
+export const Item = styled.span<{ $isHome: boolean }>`
   display: flex;
   align-items: center;
   gap: 0.5rem;
   color: ${(props) =>
-    props.isHome
+    props.$isHome
       ? props.theme.colors['base-subtitle']
       : props.theme.colors['base-span']};
 
