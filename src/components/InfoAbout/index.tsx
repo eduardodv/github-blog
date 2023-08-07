@@ -7,6 +7,7 @@ import {
   faUserGroup,
   faCalendarDay,
   faComment,
+  faBookBookmark,
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
@@ -34,7 +35,11 @@ export function InfoAbout({ userData }: InfoAboutProps) {
               {userData.company}
             </Item>
           )}
-
+          <Item $isHome={isHome}>
+            <FontAwesomeIcon icon={faBookBookmark} />
+            {userData.public_repos}{' '}
+            {userData.public_repos === 1 ? 'repositório' : 'repositórios '}
+          </Item>
           <Item $isHome={isHome}>
             <FontAwesomeIcon icon={faUserGroup} />
             {userData.followers}{' '}

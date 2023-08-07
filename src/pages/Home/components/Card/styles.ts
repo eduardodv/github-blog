@@ -38,6 +38,10 @@ export const CreatedAt = styled.span`
   padding-top: 8px;
   color: ${(props) => props.theme.colors['base-span']};
   font-size: ${(props) => props.theme.sizes['text-md']};
+
+  &:first-letter {
+    text-transform: uppercase;
+  }
 `
 
 export const Description = styled.span`
