@@ -19,4 +19,8 @@ export const Item = styled.span<{ $isHome: boolean }>`
     max-width: 1.125rem;
     color: ${(props) => props.theme.colors['base-label']};
   }
+
+  /* &:first-letter {
+    text-transform: uppercase;
+  } */
 `
