@@ -16,6 +16,23 @@ export interface PostsDataProps {
   created_at: string
 }
 
+interface UserIssueDataProps {
+  login: string
+}
+
+export interface PostDataProps {
+  body: string
+  title: string
+  user: UserIssueDataProps
+  comments: number
+  created_at: string
+  html_url: string
+}
+
+export interface PostProps {
+  postData?: PostDataProps
+}
+
 export interface CardProps {
   title: string
   url: number

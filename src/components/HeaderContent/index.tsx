@@ -15,7 +15,9 @@ import { LinkItem } from '../LinkItem'
 
 import { api } from '../../lib/axios'
 
-import { UserDataProps } from '../../interfaces/interfaces'
+import { PostProps, UserDataProps } from '../../interfaces/interfaces'
+
+const username = import.meta.env.VITE_USERNAME
 
 const initialUserData: UserDataProps = {
   avatar_url: '',
@@ -27,11 +29,11 @@ const initialUserData: UserDataProps = {
   public_repos: 0,
 }
 
-export function HeaderContent() {
+export function HeaderContent({ postData }: PostProps) {
   const [userData, setUserData] = useState<UserDataProps>(initialUserData)
 
   async function fetchUserData() {
-    const response = await api.get('/users/eduardodv', {})
+    const response = await api.get(`/users/${username}`, {})
 
     setUserData(response.data)
   }
@@ -57,16 +59,18 @@ export function HeaderContent() {
             link={
               isHome
                 ? `https://github.com/${userData.login}`
-                : `https://github.com/`
+                : postData && postData.html_url
             }
             text={isHome ? 'Github' : 'Ver no Github'}
             iconType="external"
             newTab
           />
         </Links>
-        <Title $isHome={isHome}>{isHome ? userData.name : 'Título post'}</Title>
+        <Title $isHome={isHome}>
+          {isHome ? userData.name : postData && postData.title}
+        </Title>
         {isHome && <Description>{userData.bio}</Description>}
-        <InfoAbout userData={userData} />
+        <InfoAbout userData={userData} postData={postData} />
       </Content>
     </HeaderContentContainer>
   )

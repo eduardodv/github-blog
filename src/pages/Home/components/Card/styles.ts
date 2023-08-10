@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 export const CardContainer = styled(Link)`
+  min-width: 100%;
   border-radius: 10px;
   padding: 2rem;
   text-decoration: none;

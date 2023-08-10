@@ -11,13 +11,17 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
-import { UserDataProps } from '../../interfaces/interfaces'
+import { PostDataProps, UserDataProps } from '../../interfaces/interfaces'
+
+import { formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 
 interface InfoAboutProps {
   userData: UserDataProps
+  postData?: PostDataProps
 }
 
-export function InfoAbout({ userData }: InfoAboutProps) {
+export function InfoAbout({ userData, postData }: InfoAboutProps) {
   const location = useLocation()
   const isHome = location.pathname === '/'
 
@@ -25,7 +29,7 @@ export function InfoAbout({ userData }: InfoAboutProps) {
     <InfoAboutContainer>
       <Item $isHome={isHome}>
         <FontAwesomeIcon icon={faGithub} />
-        {isHome ? userData.login : 'user issue'}
+        {isHome ? userData.login : postData && postData.user.login}
       </Item>
       {isHome && (
         <>
@@ -51,10 +55,17 @@ export function InfoAbout({ userData }: InfoAboutProps) {
         <>
           <Item $isHome={isHome}>
             <FontAwesomeIcon icon={faCalendarDay} />
-            Há 1 dia
+            {postData &&
+              postData.created_at &&
+              formatDistanceToNow(new Date(postData && postData.created_at), {
+                addSuffix: true,
+                locale: ptBR,
+              })}
           </Item>
           <Item $isHome={isHome}>
-            <FontAwesomeIcon icon={faComment} />5 comentários
+            <FontAwesomeIcon icon={faComment} />
+            {postData && postData.comments}{' '}
+            {postData && postData.comments !== 1 ? 'comentários' : 'comentário'}
           </Item>
         </>
       )}

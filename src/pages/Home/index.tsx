@@ -10,8 +10,8 @@ import { api } from '../../lib/axios'
 
 import { PostsDataProps } from '../../interfaces/interfaces'
 
-const username = 'eduardodv'
-const repo = 'github-blog'
+const username = import.meta.env.VITE_USERNAME
+const repo = import.meta.env.VITE_REPO
 
 export function Home() {
   const [postsData, setPostsData] = useState<PostsDataProps[]>([])
