@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
 
 import { SkeletonTheme } from 'react-loading-skeleton'
+import { ScrollTop } from './components/ScrollTop'
 
 export function App() {
   return (
@@ -19,6 +20,7 @@ export function App() {
         >
           <Router />
         </SkeletonTheme>
+        <ScrollTop />
       </BrowserRouter>
     </ThemeProvider>
   )
