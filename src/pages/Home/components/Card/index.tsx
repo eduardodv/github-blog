@@ -13,6 +13,12 @@ import {
 import { CardProps } from '../../../../interfaces/interfaces'
 
 export function Card({ title, url, createdAt, description }: CardProps) {
+  function smallDescription() {
+    const abstract = description.slice(0, 185) + '...'
+
+    return abstract
+  }
+
   return (
     <CardContainer to={`post/${url}`}>
       <HeadCard>
@@ -25,7 +31,7 @@ export function Card({ title, url, createdAt, description }: CardProps) {
         </CreatedAt>
       </HeadCard>
       <Description>
-        <ReactMarkdown>{description}</ReactMarkdown>
+        <ReactMarkdown>{smallDescription()}</ReactMarkdown>
       </Description>
     </CardContainer>
   )

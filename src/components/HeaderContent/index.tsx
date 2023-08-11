@@ -17,6 +17,9 @@ import { api } from '../../lib/axios'
 
 import { PostProps, UserDataProps } from '../../interfaces/interfaces'
 
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 const username = import.meta.env.VITE_USERNAME
 
 const initialUserData: UserDataProps = {
@@ -49,28 +52,39 @@ export function HeaderContent({ postData }: PostProps) {
     <HeaderContentContainer>
       {isHome && (
         <AuthorImage>
-          <img src={userData.avatar_url} alt="" />
+          {(userData.avatar_url && (
+            <img src={userData.avatar_url} alt="" />
+          )) || <Skeleton height="100%" />}
         </AuthorImage>
       )}
-      <Content>
+      <Content $isHome={isHome}>
         <Links $isHome={isHome}>
           {!isHome && <LinkItem link="/" text="Voltar" iconType="back" />}
-          <LinkItem
-            link={
-              isHome
-                ? `https://github.com/${userData.login}`
-                : postData && postData.html_url
-            }
-            text={isHome ? 'Github' : 'Ver no Github'}
-            iconType="external"
-            newTab
-          />
+          {(userData.login.length > 0 && (
+            <LinkItem
+              link={
+                isHome
+                  ? `https://github.com/${userData.login}`
+                  : postData && postData.html_url
+              }
+              text={isHome ? 'Github' : 'Ver no Github'}
+              iconType="external"
+              newTab
+            />
+          )) || <Skeleton width={120} />}
         </Links>
         <Title $isHome={isHome}>
-          {isHome ? userData.name : postData && postData.title}
+          {isHome
+            ? userData.name || <Skeleton width="60%" />
+            : (postData && postData.title) || <Skeleton width="80%" />}
         </Title>
-        {isHome && <Description>{userData.bio}</Description>}
-        <InfoAbout userData={userData} postData={postData} />
+        {isHome && (
+          <Description>{userData.bio || <Skeleton width="40%" />}</Description>
+        )}
+
+        {(userData.login.length > 0 && (
+          <InfoAbout userData={userData} postData={postData} />
+        )) || <Skeleton width="40%" />}
       </Content>
     </HeaderContentContainer>
   )

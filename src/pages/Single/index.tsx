@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown'
 
 import { PostDataProps } from '../../interfaces/interfaces'
 import { useNavigate, useParams } from 'react-router-dom'
+import Skeleton from 'react-loading-skeleton'
 
 const username = import.meta.env.VITE_USERNAME
 const repo = import.meta.env.VITE_REPO
@@ -35,10 +36,14 @@ export function Single() {
           `/repos/${username}/${repo}/issues/${id}`,
         )
 
-        setPostData(response.data)
+        if (response.data.state === 'closed') {
+          setPostData(response.data)
+        } else {
+          navigate('/notfound', { replace: true })
+        }
       } catch (error) {
         console.log(error)
-        navigate('/post', { replace: true })
+        navigate('/notfound', { replace: true })
       }
     }
 
@@ -49,7 +54,21 @@ export function Single() {
     <>
       <HeaderContent postData={postData} />
       <Content>
-        <ReactMarkdown>{postData.body}</ReactMarkdown>
+        {(postData.body && <ReactMarkdown>{postData.body}</ReactMarkdown>) || (
+          <>
+            <Skeleton width="100%" />
+            <Skeleton width="90%" />
+            <Skeleton width="70%" />
+            <br />
+            <Skeleton width="100%" />
+            <Skeleton width="90%" />
+            <Skeleton width="70%" />
+            <br />
+            <Skeleton width="100%" />
+            <Skeleton width="90%" />
+            <Skeleton width="70%" />
+          </>
+        )}
       </Content>
     </>
   )
