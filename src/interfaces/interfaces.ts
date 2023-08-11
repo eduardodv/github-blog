@@ -14,6 +14,7 @@ export interface PostsDataProps {
   title: string
   body: string
   created_at: string
+  state: string
 }
 
 interface UserIssueDataProps {

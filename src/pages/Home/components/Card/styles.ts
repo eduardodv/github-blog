@@ -53,4 +53,8 @@ export const Description = styled.span`
   -webkit-box-orient: vertical;
   overflow: hidden;
   color: ${(props) => props.theme.colors['base-text']};
+
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    -webkit-line-clamp: 3;
+  }
 `

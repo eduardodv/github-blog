@@ -41,8 +41,13 @@ export const AuthorImage = styled.div`
   }
 `
 
-export const Content = styled.div`
+export const Content = styled.div<{ $isHome: boolean }>`
+  width: 100%;
   flex: 1;
+
+  @media only screen and (max-width: 576px) {
+    text-align: ${(props) => props.$isHome && 'center'};
+  }
 `
 
 export const Links = styled.div<{ $isHome: boolean }>`
