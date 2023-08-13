@@ -1,9 +1,13 @@
 import { styled } from 'styled-components'
 
-export const InfoAboutContainer = styled.div`
+export const InfoAboutContainer = styled.div<{ $isHome: boolean }>`
   display: flex;
   gap: 0.7rem 1.5rem;
   flex-wrap: wrap;
+
+  @media only screen and (max-width: 575px) {
+    justify-content: ${(props) => props.$isHome && 'center'};
+  }
 `
 
 export const Item = styled.span<{ $isHome: boolean }>`

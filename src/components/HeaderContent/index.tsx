@@ -74,9 +74,11 @@ export function HeaderContent({ postData }: PostProps) {
           )) || <Skeleton width={120} />}
         </Links>
         <Title $isHome={isHome}>
-          {isHome
-            ? userData.name || <Skeleton width="60%" />
-            : (postData && postData.title) || <Skeleton width="80%" />}
+          {isHome ? (
+            <h2>{userData.name || <Skeleton width="60%" />}</h2>
+          ) : (
+            <h1>{(postData && postData.title) || <Skeleton width="80%" />}</h1>
+          )}
         </Title>
         {isHome && (
           <Description>{userData.bio || <Skeleton width="40%" />}</Description>

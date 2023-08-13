@@ -64,16 +64,19 @@ export const Links = styled.div<{ $isHome: boolean }>`
   }
 `
 
-export const Title = styled.h2<{ $isHome: boolean }>`
-  margin-bottom: 0.5rem;
-  line-height: 1.6;
-  font-size: ${(props) => props.theme.sizes['title-lg']};
-  color: ${(props) => props.theme.colors['base-title']};
-  padding-right: ${(props) => props.$isHome && '5rem'};
+export const Title = styled.div<{ $isHome: boolean }>`
+  h1,
+  h2 {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    font-size: ${(props) => props.theme.sizes['title-lg']};
+    color: ${(props) => props.theme.colors['base-title']};
+    padding-right: ${(props) => props.$isHome && '5rem'};
 
-  @media only screen and (max-width: 575px) {
-    text-align: ${(props) => props.$isHome && 'center'};
-    padding-right: 0;
+    @media only screen and (max-width: 575px) {
+      text-align: ${(props) => props.$isHome && 'center'};
+      padding-right: 0;
+    }
   }
 `
 

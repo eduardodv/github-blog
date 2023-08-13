@@ -26,7 +26,7 @@ export function InfoAbout({ userData, postData }: InfoAboutProps) {
   const isHome = location.pathname === '/'
 
   return (
-    <InfoAboutContainer>
+    <InfoAboutContainer $isHome={isHome}>
       <Item $isHome={isHome}>
         <FontAwesomeIcon icon={faGithub} />
         {isHome ? userData.login : postData && postData.user.login}
