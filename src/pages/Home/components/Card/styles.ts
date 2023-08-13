@@ -46,13 +46,25 @@ export const CreatedAt = styled.span`
 `
 
 export const Description = styled.span`
+  max-height: 102px;
   line-height: 1.6;
   margin-top: 1.25rem;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
   color: ${(props) => props.theme.colors['base-text']};
+
+  * {
+    display: inline;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    pointer-events: none;
+  }
 
   @media only screen and (min-width: 576px) and (max-width: 767px) {
     -webkit-line-clamp: 3;

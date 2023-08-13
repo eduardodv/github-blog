@@ -14,7 +14,7 @@ import { CardProps } from '../../../../interfaces/interfaces'
 
 export function Card({ title, url, createdAt, description }: CardProps) {
   function smallDescription() {
-    const abstract = description.slice(0, 185) + '...'
+    const abstract = description.slice(0, 250)
 
     return abstract
   }
