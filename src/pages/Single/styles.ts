@@ -9,6 +9,7 @@ export const Content = styled.article`
   }
 
   img {
+    width: 100%;
     max-width: 100%;
     display: block;
     margin: 1rem 0;
@@ -16,6 +17,7 @@ export const Content = styled.article`
 
   ul,
   ol {
+    margin-bottom: 1rem;
     margin-left: 1.8rem;
   }
 
@@ -24,6 +26,23 @@ export const Content = styled.article`
     &:not(:hover) {
       text-decoration: none;
     }
+  }
+
+  hr {
+    margin: 1.5rem 0;
+    border-color: ${(props) => props.theme.colors['base-label']};
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
   }
 
   @media only screen and (max-width: 575px) {
