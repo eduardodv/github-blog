@@ -1,4 +1,10 @@
-import { FormContainer, Input, SearchContainer, SearchHead } from './styles'
+import {
+  FormContainer,
+  Input,
+  SearchContainer,
+  SearchHead,
+  SearchResults,
+} from './styles'
 
 import { useForm } from 'react-hook-form'
 
@@ -6,6 +12,7 @@ import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { SearchProps } from '../../../../interfaces/interfaces'
+import { useState } from 'react'
 
 const searchFormSchema = z.object({
   query: z.string(),
@@ -14,12 +21,20 @@ const searchFormSchema = z.object({
 type SearchFormInputs = z.infer<typeof searchFormSchema>
 
 export function Search({ totalPosts, fetchPosts }: SearchProps) {
-  const { register, handleSubmit, reset } = useForm<SearchFormInputs>({
-    resolver: zodResolver(searchFormSchema),
-  })
+  const [queryValueForResults, setQueryValueForResults] = useState('')
+
+  const { register, handleSubmit, reset, formState } =
+    useForm<SearchFormInputs>({
+      resolver: zodResolver(searchFormSchema),
+    })
+
+  const { isSubmitting } = formState
 
   async function handleSearchPosts(data: SearchFormInputs) {
     await fetchPosts(data.query)
+
+    setQueryValueForResults(data.query)
+
     reset()
   }
 
@@ -36,8 +51,18 @@ export function Search({ totalPosts, fetchPosts }: SearchProps) {
           type="text"
           placeholder="Buscar conteúdo"
           {...register('query')}
+          disabled={isSubmitting}
         />
       </FormContainer>
+      {queryValueForResults && (
+        <SearchResults>
+          Resultados da busca por:{' '}
+          <strong>&ldquo;{queryValueForResults}&rdquo;</strong>
+          <button onClick={() => handleSearchPosts({ query: '' })}>
+            Limpar
+          </button>
+        </SearchResults>
+      )}
     </SearchContainer>
   )
 }

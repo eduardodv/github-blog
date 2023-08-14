@@ -33,7 +33,9 @@ export function Single() {
   const [postData, setPostData] = useState<PostDataProps>(initialPostData)
 
   useEffect(() => {
-    document.title = 'Github Blog | ' + postData.title
+    document.title = postData.title
+      ? 'Github Blog | ' + postData.title
+      : 'Github Blog'
     return () => {
       document.title = 'Github Blog'
     }
