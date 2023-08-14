@@ -41,10 +41,10 @@ export function Home() {
       <ListCards>
         {isLoading ? (
           <>
-            <Skeleton height={245} borderRadius={10} />
-            <Skeleton height={245} borderRadius={10} />
-            <Skeleton height={245} borderRadius={10} />
-            <Skeleton height={245} borderRadius={10} />
+            <Skeleton height={258} borderRadius={10} />
+            <Skeleton height={258} borderRadius={10} />
+            <Skeleton height={258} borderRadius={10} />
+            <Skeleton height={258} borderRadius={10} />
           </>
         ) : (
           postsData.map((post) => {
@@ -55,6 +55,7 @@ export function Home() {
                 title={post.title}
                 description={post.body}
                 createdAt={post.created_at}
+                tags={post.labels}
               />
             )
           })

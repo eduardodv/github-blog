@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import Skeleton from 'react-loading-skeleton'
+import ReactMarkdown from 'react-markdown'
+
 import { HeaderContent } from '../../components/HeaderContent'
+import { Tags } from '../../components/Tags'
+
 import { api } from '../../lib/axios'
 import { Content } from './styles'
 
-import ReactMarkdown from 'react-markdown'
-
 import { PostDataProps } from '../../interfaces/interfaces'
-import { useNavigate, useParams } from 'react-router-dom'
-import Skeleton from 'react-loading-skeleton'
 
 const username = import.meta.env.VITE_USERNAME
 const repo = import.meta.env.VITE_REPO
@@ -21,6 +23,7 @@ const initialPostData: PostDataProps = {
     login: '',
   },
   html_url: '',
+  labels: [],
 }
 
 export function Single() {
@@ -78,6 +81,7 @@ export function Single() {
             <Skeleton width="70%" />
           </>
         )}
+        <Tags tags={postData.labels} />
       </Content>
     </>
   )
