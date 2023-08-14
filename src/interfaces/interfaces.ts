@@ -6,6 +6,7 @@ export interface UserDataProps {
   company: string
   followers: number
   public_repos: number
+  html_url: string
 }
 
 export interface PostsDataProps {

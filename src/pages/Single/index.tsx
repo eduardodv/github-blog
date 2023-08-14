@@ -30,6 +30,13 @@ export function Single() {
   const [postData, setPostData] = useState<PostDataProps>(initialPostData)
 
   useEffect(() => {
+    document.title = 'Github Blog | ' + postData.title
+    return () => {
+      document.title = 'Github Blog'
+    }
+  }, [postData])
+
+  useEffect(() => {
     async function fetchPost() {
       try {
         const response = await api.get(
@@ -54,7 +61,9 @@ export function Single() {
     <>
       <HeaderContent postData={postData} />
       <Content>
-        {(postData.body && <ReactMarkdown>{postData.body}</ReactMarkdown>) || (
+        {(postData.body && (
+          <ReactMarkdown linkTarget="_blank">{postData.body}</ReactMarkdown>
+        )) || (
           <>
             <Skeleton width="100%" />
             <Skeleton width="90%" />
