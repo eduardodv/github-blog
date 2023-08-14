@@ -9,6 +9,15 @@ export interface UserDataProps {
   html_url: string
 }
 
+export interface PostTagsProps {
+  id: number
+  name: string
+}
+
+export interface TagsProps {
+  tags: PostTagsProps[]
+}
+
 export interface PostsDataProps {
   id: number
   number: number
@@ -16,6 +25,7 @@ export interface PostsDataProps {
   body: string
   created_at: string
   state: string
+  labels: PostTagsProps[]
 }
 
 interface UserIssueDataProps {
@@ -29,6 +39,7 @@ export interface PostDataProps {
   comments: number
   created_at: string
   html_url: string
+  labels: PostTagsProps[]
 }
 
 export interface PostProps {
@@ -40,6 +51,7 @@ export interface CardProps {
   url: number
   createdAt: string
   description: string
+  tags: PostTagsProps[]
 }
 
 export interface SearchProps {

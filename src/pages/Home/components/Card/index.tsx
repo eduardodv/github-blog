@@ -11,8 +11,9 @@ import {
 } from './styles'
 
 import { CardProps } from '../../../../interfaces/interfaces'
+import { Tags } from '../../../../components/Tags'
 
-export function Card({ title, url, createdAt, description }: CardProps) {
+export function Card({ title, url, createdAt, description, tags }: CardProps) {
   function smallDescription() {
     const abstract = description.slice(0, 250) + '...'
 
@@ -33,6 +34,7 @@ export function Card({ title, url, createdAt, description }: CardProps) {
       <Description>
         <ReactMarkdown>{smallDescription()}</ReactMarkdown>
       </Description>
+      <Tags tags={tags} />
     </CardContainer>
   )
 }
