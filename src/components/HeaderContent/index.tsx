@@ -30,6 +30,7 @@ const initialUserData: UserDataProps = {
   company: '',
   followers: 0,
   public_repos: 0,
+  html_url: '',
 }
 
 export function HeaderContent({ postData }: PostProps) {
@@ -62,11 +63,7 @@ export function HeaderContent({ postData }: PostProps) {
           {!isHome && <LinkItem link="/" text="Voltar" iconType="back" />}
           {(userData.login.length > 0 && (
             <LinkItem
-              link={
-                isHome
-                  ? `https://github.com/${userData.login}`
-                  : postData && postData.html_url
-              }
+              link={isHome ? userData.html_url : postData && postData.html_url}
               text={isHome ? 'Github' : 'Ver no Github'}
               iconType="external"
               newTab

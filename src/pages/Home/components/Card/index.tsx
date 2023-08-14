@@ -14,13 +14,13 @@ import { CardProps } from '../../../../interfaces/interfaces'
 
 export function Card({ title, url, createdAt, description }: CardProps) {
   function smallDescription() {
-    const abstract = description.slice(0, 250)
+    const abstract = description.slice(0, 250) + '...'
 
     return abstract
   }
 
   return (
-    <CardContainer to={`post/${url}`}>
+    <CardContainer to={`posts/${url}`}>
       <HeadCard>
         <Title>{title}</Title>
         <CreatedAt>

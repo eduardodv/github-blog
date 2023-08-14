@@ -11,7 +11,7 @@ export function Router() {
     <Routes>
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path="post/:id" element={<Single />} />
+        <Route path="posts/:id" element={<Single />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
