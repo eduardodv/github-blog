@@ -14,6 +14,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { SearchProps } from '../../../../interfaces/interfaces'
 import { useState } from 'react'
 
+import Skeleton from 'react-loading-skeleton'
+
 const searchFormSchema = z.object({
   query: z.string(),
 })
@@ -42,9 +44,11 @@ export function Search({ totalPosts, fetchPosts }: SearchProps) {
     <SearchContainer>
       <SearchHead>
         <strong>Publicações</strong>
-        <span>
-          {totalPosts} {totalPosts !== 1 ? 'publicações' : 'publicação'}
-        </span>
+        {(totalPosts && (
+          <span>
+            {totalPosts} {totalPosts !== 1 ? 'publicações' : 'publicação'}
+          </span>
+        )) || <Skeleton width={100} />}
       </SearchHead>
       <FormContainer onSubmit={handleSubmit(handleSearchPosts)}>
         <Input
