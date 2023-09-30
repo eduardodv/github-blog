@@ -37,7 +37,11 @@ export function Home() {
   return (
     <>
       <HeaderContent />
-      <Search totalPosts={totalPosts} fetchPosts={fetchPosts} />
+      <Search
+        isLoading={isLoading}
+        totalPosts={totalPosts}
+        fetchPosts={fetchPosts}
+      />
       <ListCards>
         {isLoading ? (
           <>
