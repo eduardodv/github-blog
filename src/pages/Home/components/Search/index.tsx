@@ -22,7 +22,7 @@ const searchFormSchema = z.object({
 
 type SearchFormInputs = z.infer<typeof searchFormSchema>
 
-export function Search({ totalPosts, fetchPosts }: SearchProps) {
+export function Search({ isLoading, totalPosts, fetchPosts }: SearchProps) {
   const [queryValueForResults, setQueryValueForResults] = useState('')
 
   const { register, handleSubmit, reset, formState } =
@@ -44,7 +44,7 @@ export function Search({ totalPosts, fetchPosts }: SearchProps) {
     <SearchContainer>
       <SearchHead>
         <strong>Publicações</strong>
-        {(totalPosts && (
+        {(!isLoading && (
           <span>
             {totalPosts} {totalPosts !== 1 ? 'publicações' : 'publicação'}
           </span>

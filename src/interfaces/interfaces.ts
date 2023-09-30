@@ -55,6 +55,7 @@ export interface CardProps {
 }
 
 export interface SearchProps {
+  isLoading: boolean
   totalPosts: number
   fetchPosts: (query?: string) => Promise<void>
 }
